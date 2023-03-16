@@ -150,17 +150,24 @@ class LowerContainer extends StatelessWidget {
                       color: Colors.white, fontSize: 19)),
             ),
             SizedBox(height: width * 0.03),
-            // 820
+            Container(
+              color: Colors.white,
+              child: SizedBox(
+                height: 400,width: 400,
+                child: Intrest( url:'https://youtu.be/GOMxqrOtzko'  // key: index == 4 ? intrestsKey : null,
+                                    ),
+              ),
+            ),
             LayoutBuilder(builder: (context, constraints) {
               if (constraints.maxWidth >= Breakpoints.lg) {
                 return SizedBox(
-                  width: width * 0.76,
+                  width: width * 1.86,
                   height: 100,
                   child: StaggeredGridView.countBuilder(
                     crossAxisCount: 4,
-                    itemCount: 8,
+                    itemCount: 4,
                     itemBuilder: (BuildContext context, int index) => Intrest(
-
+                      url: 'https://youtu.be/GOMxqrOtzko',
                       key: index == 4 ? intrestsKey : null,
                     ),
                     staggeredTileBuilder: (int index) =>
@@ -177,10 +184,10 @@ class LowerContainer extends StatelessWidget {
                   width: width * 0.76,
                   height: 180,
                   child: StaggeredGridView.countBuilder(
-                    crossAxisCount: 8,
-                    itemCount: 8,
+                    crossAxisCount: 4,
+                    itemCount: 4,
                     itemBuilder: (BuildContext context, int index) => Intrest(
-
+                     url: 'https://github.com/maqamylee0/portfolio_emmilly/blob/main/assets/videos/kitubs.mp4',
                       key: index == 4 ? intrestsKey : null,
                     ),
                     staggeredTileBuilder: (int index) =>
@@ -196,10 +203,10 @@ class LowerContainer extends StatelessWidget {
                   width: width * 0.76,
                   height: 360,
                   child: StaggeredGridView.countBuilder(
-                    crossAxisCount: 8,
-                    itemCount: 8,
+                    crossAxisCount: 4,
+                    itemCount: 4,
                     itemBuilder: (BuildContext context, int index) => Intrest(
-
+                       url: 'https://github.com/maqamylee0/portfolio_emmilly/blob/main/assets/videos/gameon.mp4',
                       key: index == 4 ? intrestsKey : null,
                     ),
                     staggeredTileBuilder: (int index) =>

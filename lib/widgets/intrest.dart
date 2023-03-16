@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pod_player/pod_player.dart';
 import 'package:portfolio/utils/custom_colors.dart';
 import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Intrest extends StatefulWidget {
-
+  final String url;
   const Intrest(
-      { Key? key})
+      { Key? key,required this.url})
       : super(key: key);
 
   @override
@@ -14,25 +16,28 @@ class Intrest extends StatefulWidget {
 }
 
 class _IntrestState extends State<Intrest> {
-  late VideoPlayerController _controller;
+  late final YoutubePlayerController _controller;
+  String? videoId;
 
-  late Future<void> _initializeVideoPlayerFuture;
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets/videos/kitubs.mp4',
-    );
-
-    _initializeVideoPlayerFuture = _controller.initialize();
   }
+   _initialize() async {
+     videoId = YoutubePlayer.convertUrlToId(widget.url)!;
+     _controller = YoutubePlayerController(
+       initialVideoId: videoId!,
+       flags: YoutubePlayerFlags(
+         autoPlay: true,
+         mute: true,
+       ),
+     );
+   }
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
-    _controller.dispose();
-
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,31 +52,35 @@ class _IntrestState extends State<Intrest> {
             onPressed: () {
               // Wrap the play or pause in a call to `setState`. This ensures the
               // correct icon is shown.
-              setState(() {
-                // If the video is playing, pause it.
-                if (_controller.value.isPlaying) {
-                  _controller.pause();
-                } else {
-                  // If the video is paused, play it.
-                  _controller.play();
-                }
-              });
+              // setState(() {
+              //   // If the video is playing, pause it.
+              //   if (_controller.value.isPlaying) {
+              //     _controller.pause();
+              //   } else {
+              //     // If the video is paused, play it.
+              //     _controller.play();
+               // }
+            //  });
             },
             // Display the correct icon depending on the state of the player.
             child: Icon(
-              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+              Icons.play_arrow
+              // controller.isPlaying ? Icons.pause : Icons.play_arrow,
             ),
           )),
           FutureBuilder(
-          future: _initializeVideoPlayerFuture,
+          future: _initialize(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               // If the VideoPlayerController has finished initialization, use
               // the data it provides to limit the aspect ratio of the video.
               return AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
+                aspectRatio: 4,
                 // Use the VideoPlayer widget to display the video.
-                child: VideoPlayer(_controller),
+                child:YoutubePlayer(
+                  controller: _controller,
+                  liveUIColor: Colors.amber,
+                )                ,
               );
             } else {
               // If the VideoPlayerController is still initializing, show a
@@ -81,7 +90,8 @@ class _IntrestState extends State<Intrest> {
               );
             }
           },
-        ),]
+        )
+          ,]
       ),
     );
   }
