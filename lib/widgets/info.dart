@@ -14,19 +14,26 @@ class Info extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Align(
+            alignment: Alignment.center,
+            child:   Text('Achievements',
+                style: GoogleFonts.getFont('Delius',
+                    color: Colors.white, fontSize: 30)),
+          ),
           Text(
-              '• I’m studying informatics engineering at the University Of Aleppo.',
+              '• Graduated top of class with Bachelors of Science in Computer Science from Makerere University 2023',
               style: GoogleFonts.getFont('Delius',
-                  color: CustomColors.gray, fontSize: 13)),
-          const SizedBox(height: 20),
-          Text('• The Only thing that makes me feel happy is coding.',
-              style: GoogleFonts.getFont('Delius',
-                  color: CustomColors.gray, fontSize: 13)),
+                  color: CustomColors.gray, fontSize: 20)),
           const SizedBox(height: 20),
           Text(
-              '• I always try to discover the new and the best technologies and use them to make my client feel comfortable and satisfied. ',
+              '• Women Techsters Fellow 2022- 2023 ,Mobile Application Development ',
               style: GoogleFonts.getFont('Delius',
-                  color: CustomColors.gray, fontSize: 13)),
+                  color: CustomColors.gray, fontSize: 20)),
+
+          const SizedBox(height: 20),
+          Text('• Founder MpaMpe.(MTN Hackathon First Runners Up 2022)',
+              style: GoogleFonts.getFont('Delius',
+                  color: CustomColors.gray, fontSize: 20)),
         ],
       ),
     );

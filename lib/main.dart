@@ -15,7 +15,7 @@ void main() {
      highlightColor:CustomColors.primary,
      
      ),
-    title: 'khalid-alsaleh-dev',
+    title: 'Emmilly Immaculate Namuganga',
     home: const Portfolio(),
     debugShowCheckedModeBanner: false,
   ));

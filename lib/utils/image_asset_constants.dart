@@ -8,7 +8,7 @@ class ImageAssetConstants{
   static const String javaCircle='assets/images/java_circle.png';
   static const String pythonCircle='assets/images/python_circle.png';
   static const String java='assets/images/java.png';
-  static const String python='assets/images/python.png';
-  static const String khalid='assets/images/khalid.png';
+  static const String kotlin='assets/images/Kotlin.png';
+  static const String emmilly='assets/images/emily.png';
   static const String backendIcon='assets/images/backend_icon.png';
 }

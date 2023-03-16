@@ -51,7 +51,11 @@ class NavBar extends StatelessWidget {
             NavBarItem(
                 text: 'Skills', onTap: () => scrollToWidgetByKey(skillsKey)),
             NavBarItem(
-              text: 'Intrests',
+              text: 'Projects',
+              onTap: () => scrollToWidgetByKey(intrestsKey),
+            ),
+            NavBarItem(
+              text: 'CV',
               onTap: () => scrollToWidgetByKey(intrestsKey),
             ),
             const SizedBox(width: 60),
@@ -62,18 +66,18 @@ class NavBar extends StatelessWidget {
           NavBarItemWithIcon(
             text: 'github',
             icon: ImageAssetConstants.github,
-            url: 'https://github.com/khalid-alsaleh-dev',
+            url: 'https://github.com/maqamylee0',
           ),
           SizedBox(width: 10),
-          NavBarItemWithIcon(
-              text: 'facebook',
-              icon: ImageAssetConstants.facebook,
-              url: 'https://www.facebook.com/khalid.alsaleh.52090/'),
+          // NavBarItemWithIcon(
+          //     text: 'facebook',
+          //     icon: ImageAssetConstants.facebook,
+          //     url: 'https://www.facebook.com/khalid.alsaleh.52090/'),
           SizedBox(width: 10),
           NavBarItemWithIcon(
               text: 'linkedIn',
               icon: ImageAssetConstants.linkedIn,
-              url: 'https://www.linkedin.com/in/khalid-al-saleh-3561881a8/'),
+              url: 'https://www.linkedin.com/in/namuganga-emmilly-immaculate-6a57b1191/'),
           SizedBox(width: 50),
         ])
       ])
@@ -86,7 +90,7 @@ class NavBar extends StatelessWidget {
           }),
       const SizedBox(width: 10),
       NavBarItem(
-          text: 'Skills',
+          text: 'Experience',
           onTap: () {
             scrollToWidgetByKey(skillsKey);
 
@@ -94,7 +98,7 @@ class NavBar extends StatelessWidget {
           }),
       const SizedBox(width: 10),
       NavBarItem(
-          text: 'Intrests',
+          text: 'Projects',
           onTap: () {
             scrollToWidgetByKey(intrestsKey);
             collapsableHeight.value = 0.0;
@@ -102,16 +106,20 @@ class NavBar extends StatelessWidget {
       NavBarItem(
           text: 'github',
           onTap: () async {
-            await launch('https://github.com/khalid-alsaleh-dev');
+            await launch('https://github.com/maqamylee0');
           }),
-      NavBarItem(
-          text: 'facebook',
-          onTap: () async =>
-              await launch('https://www.facebook.com/khalid.alsaleh.52090/')),
+      // NavBarItem(
+      //     text: 'facebook',
+      //     onTap: () async =>
+      //         await launch('https://www.facebook.com/khalid.alsaleh.52090/')),
       NavBarItem(
           text: 'linkedIn',
           onTap: () async => await launch(
-              'https://www.linkedin.com/in/khalid-al-saleh-3561881a8/')),
+              'https://www.linkedin.com/in/namuganga-emmilly-immaculate-6a57b1191/')),
+      NavBarItem(
+          text: 'linkedIn',
+          onTap: () async => await launch(
+              'https://drive.google.com/file/d/1cZ3BTB7ME4b7NjkLzA9aF0UTJTwhI2mM/view?usp=sharing')),
     ];
     return Stack(
       children: [

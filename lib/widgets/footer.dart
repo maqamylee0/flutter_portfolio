@@ -24,7 +24,7 @@ class Footer extends StatelessWidget {
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                   Text('Copyright © 2021 khalid-alsaleh-dev',
+                   Text('Copyright © 2023 Emmilly Immaculate',
                       style: GoogleFonts.getFont('Delius',
                           color: CustomColors.gray,
                           fontSize: 14)),
@@ -32,7 +32,7 @@ class Footer extends StatelessWidget {
                       style: GoogleFonts.getFont('Delius',
                           color: CustomColors.gray,
                           fontSize: 14)),
-                  Text('khalidlionel.2089@gmail.com',
+                  Text('emmillynamuganga@gmail.com',
                       style: GoogleFonts.getFont('Delius',
                           color: CustomColors.gray,
                           fontSize: 14)),
@@ -40,7 +40,7 @@ class Footer extends StatelessWidget {
               )
             : Column(
                 children: [
-                  Text('Copyright © 2021 khalid-alsaleh-dev',
+                  Text('Copyright © 2023 Emmilly Immaculate',
                       style: GoogleFonts.getFont('Delius',
                           color: CustomColors.gray,
                           fontSize: 14)),
@@ -50,7 +50,7 @@ class Footer extends StatelessWidget {
                           color: CustomColors.gray,
                           fontSize: 14)),
                   const SizedBox(height: 10),
-                  Text('khalidlionel.2089@gmail.com',
+                  Text('emmillynamuganga@gmail.com',
                       style: GoogleFonts.getFont('Delius',
                           color: CustomColors.gray,
                           fontSize: 14)),

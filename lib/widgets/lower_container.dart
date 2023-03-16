@@ -38,6 +38,22 @@ class LowerContainer extends StatelessWidget {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        HelloWithBio(
+                          ratio:0.4 ,
+                          width: width,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Info(width: width,ratio:0.4)
+                      ],
+                    ),
+                    SizedBox(width: 0.05 * width),
+
                     // skills cards
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,38 +68,25 @@ class LowerContainer extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         SkillCard(
-                          title: 'Backend Development',
+                          title: 'Android Development',
                           description:
-                              'I’m developing backend applications using codnuit and spring boot with a good knowledge in nodejs.',
+                              'I’m developing android applications using kotlin.',
                           icon: ImageAssetConstants.backendIcon,
                           width: width,
                           ratio: 0.35,
                         ),
                         const SizedBox(height: 10),
-                        SkillCard(
-                            title: 'Python Development',
-                            description:
-                                'I’m developing maching learing and deep learning projects using standard python libraries and tensorflow api.',
-                            icon: ImageAssetConstants.python,
-                            width: width,
-                            ratio: 0.35),
+                        // SkillCard(
+                        //     title: 'Python Development',
+                        //     description:
+                        //         'I’m developing maching learing and deep learning projects using standard python libraries and tensorflow api.',
+                        //     icon: ImageAssetConstants.kotlin,
+                        //     width: width,
+                        //     ratio: 0.35),
                       ],
                     ),
-                    SizedBox(width: 0.05 * width),
                     // hello with bio and info
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        HelloWithBio(
-                          ratio:0.4 ,
-                          width: width,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        Info(width: width,ratio:0.4)
-                      ],
-                    )
+
                   ],
                 );
               } else {
@@ -103,20 +106,20 @@ class LowerContainer extends StatelessWidget {
                             ratio: 0.45),
                         const SizedBox(height: 10),
                         SkillCard(
-                            title: 'Backend Development',
+                            title: 'Android Development',
                             description:
-                                'I’m developing backend applications using codnuit and spring boot with a good knowledge in nodejs.',
+                                'I’m developing android applications with kotlin.',
                             icon: ImageAssetConstants.backendIcon,
                             width: 2 * width,
                             ratio: 0.45),
                         const SizedBox(height: 10),
-                        SkillCard(
-                            title: 'Python Development',
-                            description:
-                                'I’m developing maching learing and deep learning projects using standard python libraries and tensorflow api.',
-                            icon: ImageAssetConstants.python,
-                            width: 2 * width,
-                            ratio: 0.45),
+                        // SkillCard(
+                        //     title: 'Python Development',
+                        //     description:
+                        //         'I’m developing maching learing and deep learning projects using standard python libraries and tensorflow api.',
+                        //     icon: ImageAssetConstants.kotlin,
+                        //     width: 2 * width,
+                        //     ratio: 0.45),
                       ],
                     ),
                     // hello with bio and info
@@ -143,7 +146,7 @@ class LowerContainer extends StatelessWidget {
             Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(left:width>=Breakpoints.lg? width * 0.1:width * 0.05),
-              child: Text('Some of my intrests',
+              child: Text('Some of my work',
                   style: GoogleFonts.getFont('Delius',
                       color: Colors.white, fontSize: 19)),
             ),
@@ -155,7 +158,7 @@ class LowerContainer extends StatelessWidget {
                   width: width * 0.76,
                   height: 100,
                   child: StaggeredGridView.countBuilder(
-                    crossAxisCount: 8,
+                    crossAxisCount: 4,
                     itemCount: 8,
                     itemBuilder: (BuildContext context, int index) => Intrest(
                       intrest: intrests[index]['intrest'],

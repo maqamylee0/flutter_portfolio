@@ -17,20 +17,20 @@ class KhalidImage extends StatelessWidget {
         Container(
           constraints:const BoxConstraints(maxWidth:370),
           child: Image.asset(
-            ImageAssetConstants.khalid,
+            ImageAssetConstants.emmilly,
             width: width * 0.29,
             height: width * 0.3,
           ),
         ),
-        Positioned(
-          top: width * 0.17,
-          left: 0,
-          child: Image.asset(
-            ImageAssetConstants.pythonCircle,
-            width: width * 0.07,
-            height: width * 0.07,
-          ),
-        ),
+        // Positioned(
+        //   top: width * 0.17,
+        //   left: 0,
+        //   child: Image.asset(
+        //     ImageAssetConstants.pythonCircle,
+        //     width: width * 0.07,
+        //     height: width * 0.07,
+        //   ),
+        // ),
         Positioned(
           top: width * 0.19,
           right: width * 0.010,
@@ -40,15 +40,15 @@ class KhalidImage extends StatelessWidget {
             height: width * 0.08,
           ),
         ),
-        Positioned(
-          top: width * 0.06,
-          right: width * 0.016,
-          child: Image.asset(
-            ImageAssetConstants.javaCircle,
-            width: width * 0.06,
-            height: width * 0.058,
-          ),
-        ),
+        // Positioned(
+        //   top: width * 0.06,
+        //   right: width * 0.016,
+        //   child: Image.asset(
+        //     ImageAssetConstants.javaCircle,
+        //     width: width * 0.06,
+        //     height: width * 0.058,
+        //   ),
+        // ),
         Positioned(
           top: width * 0.04,
           left: width * 0.025,
