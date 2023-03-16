@@ -18,7 +18,7 @@ class Logo extends StatelessWidget {
           curve: Curves.easeInOut),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        child: Image.asset(ImageAssetConstants.logo,
+        child: Image.asset(ImageAssetConstants.logo6,
             width: width >= Breakpoints.xlg ? width * 0.14 : Breakpoints.xlg * 0.14,
             height: width >= Breakpoints.xlg ? 0.04 * width : 0.04 * Breakpoints.xlg),
       ),

@@ -117,7 +117,7 @@ class NavBar extends StatelessWidget {
           onTap: () async => await launch(
               'https://www.linkedin.com/in/namuganga-emmilly-immaculate-6a57b1191/')),
       NavBarItem(
-          text: 'linkedIn',
+          text: 'CV',
           onTap: () async => await launch(
               'https://drive.google.com/file/d/1cZ3BTB7ME4b7NjkLzA9aF0UTJTwhI2mM/view?usp=sharing')),
     ];

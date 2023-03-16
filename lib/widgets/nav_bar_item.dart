@@ -26,7 +26,7 @@ class NavBarItem extends StatelessWidget {
           onTap: () => onTap(),
           child: Container(
             height: 40.0,
-            width: MediaQuery.of(context).size.width*0.05,
+            width: 100,
             alignment: Alignment.center,
             margin: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Column(
@@ -38,7 +38,7 @@ class NavBarItem extends StatelessWidget {
                 Text(
                   text,
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: 12.0,
                     color: data.value
                         ? CustomColors.primary
                         : Colors.white,

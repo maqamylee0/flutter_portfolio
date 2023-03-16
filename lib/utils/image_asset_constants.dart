@@ -1,5 +1,13 @@
 class ImageAssetConstants{
-  static const String logo='assets/images/logo.png';
+  static const String logo1='assets/images/logo1.png';
+  static const String logo2='assets/images/logo2.png';
+  static const String logo3='assets/images/logo3.jpg';
+  // static const String logo4='assets/images/logo3.jpg';
+  static const String logo4='assets/images/logo4.png';
+  static const String logo5='assets/images/logo5.png';
+  static const String logo6='assets/images/logo6.png';
+  // static const String logo8='assets/images/logo.png';
+
   static const String github='assets/images/github.png';
   static const String facebook='assets/images/facebook.png';
   static const String linkedIn='assets/images/linkedIn.png';
