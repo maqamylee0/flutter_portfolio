@@ -75,7 +75,6 @@ class LowerContainer extends StatelessWidget {
                           width: width,
                           ratio: 0.35,
                         ),
-                        const SizedBox(height: 10),
                         // SkillCard(
                         //     title: 'Python Development',
                         //     description:
@@ -161,9 +160,7 @@ class LowerContainer extends StatelessWidget {
                     crossAxisCount: 4,
                     itemCount: 8,
                     itemBuilder: (BuildContext context, int index) => Intrest(
-                      intrest: intrests[index]['intrest'],
-                      color: intrests[index]['color'],
-                      textColor: intrests[index]['textColor'],
+
                       key: index == 4 ? intrestsKey : null,
                     ),
                     staggeredTileBuilder: (int index) =>
@@ -183,9 +180,7 @@ class LowerContainer extends StatelessWidget {
                     crossAxisCount: 8,
                     itemCount: 8,
                     itemBuilder: (BuildContext context, int index) => Intrest(
-                      intrest: intrests[index]['intrest'],
-                      color: intrests[index]['color'],
-                      textColor: intrests[index]['textColor'],
+
                       key: index == 4 ? intrestsKey : null,
                     ),
                     staggeredTileBuilder: (int index) =>
@@ -204,9 +199,7 @@ class LowerContainer extends StatelessWidget {
                     crossAxisCount: 8,
                     itemCount: 8,
                     itemBuilder: (BuildContext context, int index) => Intrest(
-                      intrest: intrests[index]['intrest'],
-                      color: intrests[index]['color'],
-                      textColor: intrests[index]['textColor'],
+
                       key: index == 4 ? intrestsKey : null,
                     ),
                     staggeredTileBuilder: (int index) =>
@@ -220,7 +213,7 @@ class LowerContainer extends StatelessWidget {
               }
             }),
             const SizedBox(height:10)
-        
+
           ],
         ));
   }
