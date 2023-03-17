@@ -112,11 +112,16 @@ class _PortfolioState extends State<Portfolio> {
                 children: [
                   const SizedBox(height: 130),
                   UpperContainer(width: width),
-                  LowerContainer(
-                      width: width,
-                      intrests: intrests,
-                      intrestsKey: intrestsKey,
-                      skillsKey: skillsKey),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 3,
+                    width: width,
+                    child: LowerContainer(
+
+                        width: width,
+                        intrests: intrests,
+                        intrestsKey: intrestsKey,
+                        skillsKey: skillsKey),
+                  ),
                   Container(
                     width: width,
                     height: 0.1,

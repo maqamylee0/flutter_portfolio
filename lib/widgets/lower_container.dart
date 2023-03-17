@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/utils/breakpoints.dart';
@@ -15,17 +16,25 @@ class LowerContainer extends StatelessWidget {
   final GlobalKey intrestsKey;
   final GlobalKey skillsKey;
 
-  const LowerContainer(
+   LowerContainer(
       {Key? key,
       required this.width,
       required this.intrests,
       required this.intrestsKey,
       required this.skillsKey})
       : super(key: key);
-
+  List<String> vids = [
+    'https://firebasestorage.googleapis.com/v0/b/portfolio-9ca66.appspot.com/o/capstonefinal.mp4?alt=media&token=0058cb16-6293-46ac-bc39-53641bcfc9f0',
+    'https://firebasestorage.googleapis.com/v0/b/portfolio-9ca66.appspot.com/o/kitubs.mp4?alt=media&token=91cc895b-05c8-4c1d-a061-0c74024731f6',
+    'https://firebasestorage.googleapis.com/v0/b/portfolio-9ca66.appspot.com/o/rosary.mp4?alt=media&token=25343749-907d-4770-919d-6f4190f5354a',
+    'https://firebasestorage.googleapis.com/v0/b/portfolio-9ca66.appspot.com/o/shecode.mp4?alt=media&token=ae070798-0fe4-4dab-97e5-ec86fb42a62a',
+    'https://firebasestorage.googleapis.com/v0/b/portfolio-9ca66.appspot.com/o/kotlin_kitubs.mp4?alt=media&token=1b2564dc-ccc9-4a54-b796-255e98fba619',
+    'https://firebasestorage.googleapis.com/v0/b/portfolio-9ca66.appspot.com/o/gameon.mp4?alt=media&token=634a8bc7-d78e-4534-8902-6da9034dca8b',
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
+         // height: MediaQuery.of(context).size.height*0.8,
         width: width,
         key: skillsKey,
         color: CustomColors.darkBackground,
@@ -150,75 +159,76 @@ class LowerContainer extends StatelessWidget {
                       color: Colors.white, fontSize: 19)),
             ),
             SizedBox(height: width * 0.03),
-            Container(
-              color: Colors.white,
-              child: SizedBox(
-                height: 400,width: 400,
-                child: Intrest( url:'https://youtu.be/GOMxqrOtzko'  // key: index == 4 ? intrestsKey : null,
-                                    ),
+
+            Expanded(
+              child: Column(
+                children: [
+                  LayoutBuilder(builder: (context, constraints) {
+                      if (constraints.maxWidth >= Breakpoints.lg) {
+                        return SizedBox(
+                          width: width * 1.86,
+                          height: MediaQuery.of(context).size.height * 2.0,
+                          child: GridView.builder(
+                            itemCount: vids.length,
+
+                            itemBuilder: (BuildContext context, int index) => SizedBox(
+                              child: Intrest(
+                                url: vids[index],
+                                key: index == 4 ? intrestsKey : null,
+                              ),
+                            ),
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 10.0,
+                              crossAxisSpacing: 40.0,
+                              crossAxisCount: 3,
+                              childAspectRatio: 0.5
+                            ),
+                          ),
+                        );
+                      } else if (constraints.maxWidth < Breakpoints.lg &&
+                          constraints.maxWidth >= Breakpoints.sm) {
+                        return SizedBox(
+                          width: width * 0.86,
+                          height: MediaQuery.of(context).size.height * 2 ,
+                          child: GridView.builder(
+                            itemCount: vids.length,
+                            itemBuilder: (BuildContext context, int index) => Intrest(
+                              url: vids[index],
+                              key: index == 2 ? intrestsKey : null,
+                            ),
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 10.0,
+                              crossAxisSpacing: 40.0,
+                              crossAxisCount: 2,
+                                childAspectRatio: 0.5
+
+                            ),
+                          ),
+                        );
+                      } else {
+                        return SizedBox(
+                          width: width * 0.76,
+                          height: MediaQuery.of(context).size.height * 2.0,
+                          child: GridView.builder(
+                            itemCount: vids.length,
+                            itemBuilder: (BuildContext context, int index) => Intrest(
+                              url: vids[index],
+                              key: index == 4 ? intrestsKey : null,
+                            ),
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                              mainAxisSpacing: 10.0,
+                              crossAxisSpacing: 40.0,
+                              crossAxisCount: 1,
+                              childAspectRatio: 0.4
+                            ),
+                          ),
+                        );
+                      }
+                    }),
+                ],
               ),
             ),
-            LayoutBuilder(builder: (context, constraints) {
-              if (constraints.maxWidth >= Breakpoints.lg) {
-                return SizedBox(
-                  width: width * 1.86,
-                  height: 100,
-                  child: StaggeredGridView.countBuilder(
-                    crossAxisCount: 4,
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) => Intrest(
-                      url: 'https://youtu.be/GOMxqrOtzko',
-                      key: index == 4 ? intrestsKey : null,
-                    ),
-                    staggeredTileBuilder: (int index) =>
-                        const StaggeredTile.fit(
-                      2,
-                    ),
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 40.0,
-                  ),
-                );
-              } else if (constraints.maxWidth < Breakpoints.lg &&
-                  constraints.maxWidth >= Breakpoints.sm) {
-                return SizedBox(
-                  width: width * 0.76,
-                  height: 180,
-                  child: StaggeredGridView.countBuilder(
-                    crossAxisCount: 4,
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) => Intrest(
-                     url: 'https://github.com/maqamylee0/portfolio_emmilly/blob/main/assets/videos/kitubs.mp4',
-                      key: index == 4 ? intrestsKey : null,
-                    ),
-                    staggeredTileBuilder: (int index) =>
-                        const StaggeredTile.fit(
-                      4,
-                    ),
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 40.0,
-                  ),
-                );
-              } else {
-                return SizedBox(
-                  width: width * 0.76,
-                  height: 360,
-                  child: StaggeredGridView.countBuilder(
-                    crossAxisCount: 4,
-                    itemCount: 4,
-                    itemBuilder: (BuildContext context, int index) => Intrest(
-                       url: 'https://github.com/maqamylee0/portfolio_emmilly/blob/main/assets/videos/gameon.mp4',
-                      key: index == 4 ? intrestsKey : null,
-                    ),
-                    staggeredTileBuilder: (int index) =>
-                        const StaggeredTile.fit(
-                      8,
-                    ),
-                    mainAxisSpacing: 10.0,
-                    crossAxisSpacing: 40.0,
-                  ),
-                );
-              }
-            }),
+
             const SizedBox(height:10)
 
           ],

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pod_player/pod_player.dart';
 import 'package:portfolio/utils/custom_colors.dart';
 import 'package:video_player/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:flutter/foundation.dart';
+import 'package:universal_html/html.dart' as html;
 
 class Intrest extends StatefulWidget {
   final String url;
@@ -16,83 +19,131 @@ class Intrest extends StatefulWidget {
 }
 
 class _IntrestState extends State<Intrest> {
-  late final YoutubePlayerController _controller;
-  String? videoId;
+  late VideoPlayerController _controller;
+  late Duration videoLength;
+  late Duration videoPosition;
+  double volume = 0.5;
 
   @override
   void initState() {
     super.initState();
+    _controller = VideoPlayerController.network(
+        widget.url)
+      ..addListener(() => setState(() {
+        videoPosition = _controller.value.position;
+      }))
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {
+          videoLength = _controller.value.duration;
+        });
+      });
   }
-   _initialize() async {
-     videoId = YoutubePlayer.convertUrlToId(widget.url)!;
-     _controller = YoutubePlayerController(
-       initialVideoId: videoId!,
-       flags: YoutubePlayerFlags(
-         autoPlay: true,
-         mute: true,
-       ),
-     );
-   }
   @override
   void dispose() {
     super.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 170,
+      // width: 200,
+      // height: 200,
 
-      child: Stack(
+      child: Column(
         children: [
-          Positioned(
-            right: 10,
-              bottom: 10,
-              child: FloatingActionButton(
-            onPressed: () {
-              // Wrap the play or pause in a call to `setState`. This ensures the
-              // correct icon is shown.
-              // setState(() {
-              //   // If the video is playing, pause it.
-              //   if (_controller.value.isPlaying) {
-              //     _controller.pause();
-              //   } else {
-              //     // If the video is paused, play it.
-              //     _controller.play();
-               // }
-            //  });
-            },
-            // Display the correct icon depending on the state of the player.
-            child: Icon(
-              Icons.play_arrow
-              // controller.isPlaying ? Icons.pause : Icons.play_arrow,
+          Text('Hi this is an app i made about Tenants'),
+          if (_controller.value.isInitialized) ...[
+            GestureDetector(
+              onTap: (){
+                _controller.value.isPlaying
+                    ? _controller.pause()
+                    : _controller.play();
+              },
+              child: AspectRatio(
+                aspectRatio: 0.7,
+                child: SizedBox(
+
+                    child: VideoPlayer(_controller)),
+              ),
             ),
-          )),
-          FutureBuilder(
-          future: _initialize(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              // If the VideoPlayerController has finished initialization, use
-              // the data it provides to limit the aspect ratio of the video.
-              return AspectRatio(
-                aspectRatio: 4,
-                // Use the VideoPlayer widget to display the video.
-                child:YoutubePlayer(
-                  controller: _controller,
-                  liveUIColor: Colors.amber,
-                )                ,
-              );
-            } else {
-              // If the VideoPlayerController is still initializing, show a
-              // loading spinner.
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        )
-          ,]
+            SizedBox(
+              width: 200,
+              child: VideoProgressIndicator(
+                _controller,
+                allowScrubbing: true,
+                padding: EdgeInsets.all(10),
+              ),
+            ),
+            Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    _controller.value.isPlaying
+                        ? Icons.pause
+                        : Icons.play_arrow,
+                  ),
+                  onPressed: () => setState(
+                        () {
+                      _controller.value.isPlaying
+                          ? _controller.pause()
+                          : _controller.play();
+                    },
+                  ),
+                ),
+                Text(
+                    '${convertToMinutesSeconds(videoPosition)} / ${convertToMinutesSeconds(videoLength)}'),
+                // SizedBox(width: 10),
+                Icon(animatedVolumeIcon(volume)),
+                // Slider(
+                //     value: volume,
+                //     min: 0,
+                //     max: 1,
+                //     onChanged: (changedVolume) {
+                //       setState(() {
+                //         volume = changedVolume;
+                //         _controller.setVolume(changedVolume);
+                //       });
+                //     }),
+                // Spacer(),
+                IconButton(
+                    icon: Icon(Icons.loop,
+                        color: _controller.value.isLooping
+                            ? Colors.green
+                            : Colors.black),
+                    onPressed: () {
+                      _controller.setLooping(!_controller.value.isLooping);
+                    })
+              ],
+            )
+          ]
+        ],
       ),
     );
   }
+
+
+String convertToMinutesSeconds(Duration duration) {
+  final parsedMinutes = duration.inMinutes % 60;
+
+  final minutes =
+  parsedMinutes < 10 ? '0$parsedMinutes' : parsedMinutes.toString();
+
+  final parsedSeconds = duration.inSeconds % 60;
+
+  final seconds =
+  parsedSeconds < 10 ? '0$parsedSeconds' : parsedSeconds.toString();
+
+  return '$minutes:$seconds';
+}
+
+IconData animatedVolumeIcon(double volume) {
+  if (volume == 0)
+    return Icons.volume_mute;
+  else if (volume < 0.5)
+    return Icons.volume_down;
+  else
+    return Icons.volume_up;
+}
 }
